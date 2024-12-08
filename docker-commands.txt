@@ -1,0 +1,12 @@
+# Create network
+docker network create library-network
+
+# Run postgres 16.6
+docker run --name librarydb -p 5432:5432 -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -e POSTGRES_DB=library --network library-network postgres:16.6
+
+# Run pgadmin4 8.9
+docker run --name pgadmin4 -p 15432:80 -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=admin --network library-network dpage/pgadmin4:8.9
+
+# You can add -d at the dockers to allow it to run in background, just remember to close it.
+
+# sudo netstat -anp | grep 5432       Searches if the port is availiable
