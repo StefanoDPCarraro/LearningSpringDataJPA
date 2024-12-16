@@ -20,7 +20,6 @@ public class DatabaseConfiguration {
     String password;
     @Value("${spring.datasource.driver-class-name}")
     String driver;
-
     
     @Bean
     public DataSource hikariDataSource(){
