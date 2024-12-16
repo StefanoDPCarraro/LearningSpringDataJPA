@@ -1,6 +1,7 @@
 package io.github.stefanodpc.libraryapi.model;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -8,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,7 +29,8 @@ public class Author {
     @Column(name = "nationality", length = 50, nullable = false)
     private String nationality;
 
-
+    @OneToMany(mappedBy = "author")  //does not exist in the database, but can be used to simplify java functions
+    private List<Book> books;        //the mapped by references the java atribute, therefore author, instead of the DB name
 
     // @Deprecated - This way you can enforce the coders to use only constructors with args, while
     // still giving JPA its mandatory noArgs constuctor 
@@ -72,4 +75,5 @@ public class Author {
         this.nationality = nationality;
     }
 
+    
 }
